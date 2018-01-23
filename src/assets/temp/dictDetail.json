@@ -1,0 +1,21 @@
+{
+    "total": 2,
+    "data": [{
+        "iAutoid": 10,
+        "iVersionId": "AES_METHOD",
+        "sValue": "AES",
+        "sLabel": "AES",
+        "iCreateTime": "2016-05-02 22:00:00",
+        "iUpdateTime": "2017-05-01 20:00:00"
+    },
+        {
+            "iAutoid": 11,
+            "iVersionId": "AES_METHOD",
+            "sValue": "MD5",
+            "sLabel": "MD5",
+            "iCreateTime": "2016-05-02 22:00:00",
+            "iUpdateTime": "2017-05-01 20:00:00"
+        }
+    ]
+
+}

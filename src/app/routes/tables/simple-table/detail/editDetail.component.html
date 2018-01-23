@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <div class="modal-title">{{i != -1 ? '添加' : '编辑'}}-字典明细</div>
+</div>
+<form #f="ngForm" (ngSubmit)="save()" nz-form [nzType]="'horizontal'">
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典名称</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="parentData.sCode" name="sCode" maxlength="30" readonly/>
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典版本</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="parentData.sVersion" name="sVersion" maxlength="30" readonly/>
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典key</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="i.sValue" name="sValue" maxlength="50" required />
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典value</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="i.sLabel" name="sLabel" required />
+        </div>
+    </div>
+    <div class="modal-footer" style="text-align: center">
+        <button nz-button type="button" (click)="close()">关闭</button>
+        <button nz-button [disabled]="!f.form.valid || !f.form.dirty" [nzLoading]="http.loading" [nzType]="'primary'">保存</button>
+    </div>
+</form>

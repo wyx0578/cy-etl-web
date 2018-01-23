@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <div class="modal-title">{{i != -1 ? '添加' : '编辑'}}-字典</div>
+</div>
+<form #f="ngForm" (ngSubmit)="save()" nz-form [nzType]="'horizontal'">
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典名称</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="i.sCode" name="sCode" maxlength="30" required/>
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典描述</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="i.sDesc" name="sDesc" maxlength="50" required />
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典版本</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <input nz-input [(ngModel)]="i.sVersion" name="sVersion" required />
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>字典状态</label></div>
+        <div nz-form-control nz-col [nzSpan]="20">
+            <nz-select [(ngModel)]="i.sStatus" name="sStatus" required [nzAllowClear]="false">
+                <nz-option
+                    *ngFor="let i of status"
+                    [nzLabel]="i"
+                    [nzValue]="i">
+                </nz-option>
+            </nz-select>
+        </div>
+    </div>
+    <div nz-form-item nz-row class="mb-sm">
+        <div nz-form-label nz-col [nzSpan]="4"><label>开始日期</label></div>
+        <div nz-form-control nz-col [nzSpan]="8">
+            <nz-datepicker [(ngModel)]="i.sStartDate" name="sStartDate"></nz-datepicker>
+        </div>
+        <div nz-form-label nz-col [nzSpan]="4"><label>结束日期</label></div>
+        <div nz-form-control nz-col [nzSpan]="8">
+            <!--<input nz-input [(ngModel)]="i.sVersion" name="sVersion" required />-->
+            <nz-datepicker [(ngModel)]="i.sEndDate" name="sEndDate"></nz-datepicker>
+        </div>
+    </div>
+    <div class="modal-footer" style="text-align: center">
+        <button nz-button type="button" (click)="close()">关闭</button>
+        <button nz-button [disabled]="!f.form.valid || !f.form.dirty" [nzLoading]="http.loading" [nzType]="'primary'">保存</button>
+    </div>
+</form>

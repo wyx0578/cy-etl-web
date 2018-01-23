@@ -1,0 +1,23 @@
+{
+    "total": 2,
+    "data": [{
+            "iAutoid": 10000,
+            "sCode": "AES_METHOD",
+            "sDesc": "加密解密方式",
+            "sVersion": "v1.0",
+            "sStatus": "有效",
+            "sStartDate": "2017-05-01",
+            "sEndDate": "2018-05-01"
+        },
+        {
+            "iAutoid": 10001,
+            "sCode": "JOB_METHOD",
+            "sDesc": "job执行方式",
+            "sVersion": "v1.0",
+            "sStatus": "有效",
+            "sStartDate": "2018-01-01",
+            "sEndDate": "2018-02-01"
+        }
+    ]
+
+}
