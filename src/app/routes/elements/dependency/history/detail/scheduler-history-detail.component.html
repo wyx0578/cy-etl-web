@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <div class="modal-title">历史记录详情</div>
+    <div class="modal-title">历史记录详情{{title}}</div>
 </div>
 
 <!--<form nz-form [nzLayout]="'inline'" class="search-form" style="margin-bottom: 0px;">
@@ -46,7 +46,7 @@
         </div>
     </div>
 </form>-->
-<nz-table #nzTable class="simple-table"
+<!--<nz-table #nzTable class="simple-table"
           [nzAjaxData]="schedulerHistoryDetailData"
           (nzPageIndexChange)="load()"
           [nzBordered]="true"
@@ -71,12 +71,28 @@
         <td>删除</td>
     </tr>
     </tbody>
-</nz-table>
+</nz-table>-->
 
+<table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%" style="white-space: nowrap;">
+    <thead>
+        <tr style="text-align: center">
 
-<!--
-<div class="modal-footer" style="text-align: center">
-    <button nz-button type="button" (click)="close()">关闭</button>
-    <button nz-button [disabled]="!f.form.valid || !f.form.dirty" [nzLoading]="http.loading" [nzType]="'primary'">保存</button>
-</div>
--->
+        <th >detailId</th>
+        <th>schedulerId</th>
+        <th>状态</th>
+        <th>执行类型</th>
+        <th>错误</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr  *ngFor="let item of schedulerHistoryDetailData" style="text-align: center">
+            <td>{{item.detailId}}</td>
+            <td>{{item.schedulerId}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.runType}}</td>
+            <td>{{item.errMsg}}</td>
+            <td><a><img src="../../../../assets/image/icon/delete.png"></a></td>
+        </tr>
+    </tbody>
+</table>

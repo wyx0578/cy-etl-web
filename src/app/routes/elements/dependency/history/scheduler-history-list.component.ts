@@ -1,10 +1,11 @@
 import { NzModalSubject,NzMessageService,NzModalService } from 'ng-zorro-antd';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { ModalHelper } from '@delon/theme';
 import {SchedulerHistoryDetailComponent} from "./detail/scheduler-history-detail.component";
 import {ConfigInterface} from "ng-zorro-antd/src/modal/nz-modal.service";
+
 
 @Component({
     selector: 'cy-scheduler-history',
@@ -12,6 +13,7 @@ import {ConfigInterface} from "ng-zorro-antd/src/modal/nz-modal.service";
 })
 
 export class SchedulerHistoryComponent implements OnInit,ConfigInterface{
+
     schedulerHistoryData = [{
         "schedulerId": "111",
         "status": "222",
@@ -22,8 +24,10 @@ export class SchedulerHistoryComponent implements OnInit,ConfigInterface{
         ps: 10,
         s: ''
     };
+    aa = "eee";
     zIndex: number;
     schedulerId: string;
+    dtOptions: DataTables.Settings = {};
     constructor(
         private modalHelper: ModalHelper,
         private subject: NzModalSubject,
@@ -31,15 +35,34 @@ export class SchedulerHistoryComponent implements OnInit,ConfigInterface{
         public msgSrv: NzMessageService,
         public http: _HttpClient) { }
     ngOnInit() {
-            this.zIndex = 1;
-            this.load();
+        this.zIndex = 1;
+        this.load();
+        this.dtOptions = {
+            //"dom": '<"top">rt<"bottom"ip><"clear">',
+            "language": {"url" : "../../../../assets/dataTablesLanguage.json"},
+            "scrollX": true,
+            //"order": "desc",
+            "bFilter": false,
+            "pagingType": "full_numbers",
+            "bLengthChange": false,
+        };
             /*this.http.get('./assets/pois.json').subscribe((res: any) => this.i = res.data[0]);*/
+
+           /* $('#scheduler_history').dataTable( {
+                //"dom": '<"top">rt<"bottom"ip><"clear">',
+                "language": {"url" : "../../../../assets/dataTablesLanguage.json"},
+                "scrollX": true,
+                //"order": "desc",
+                "bFilter": false,
+                "pagingType": "full_numbers",
+                "bLengthChange": false,
+            });*/
         }
 
     //=========================
     openHistoryDetailRecord(item) {
-        this.schedulerId = item.schedulerId;
-        this.modalHelper.static(SchedulerHistoryDetailComponent,{item},{size:450},{zIndex:1000}).subscribe( () => {
+        //this.schedulerId = item.schedulerId;
+        this.modalHelper.static(SchedulerHistoryDetailComponent,{item},1000,{zIndex:1000}).subscribe( () => {
             this.load();
             this.msgSrv.info('回调，重新发起刷新列表');
         })

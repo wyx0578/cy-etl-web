@@ -39,16 +39,27 @@
             "icon": "icon-chemistry",
             "acl": "user1",
             "children": [{
-                "text": "按钮",
-                "link": "/elements/buttons",
-                "translate": "同步开关",
-                "shortcut": true
-            }, {
-                "text": "Notification",
-                "link": "/elements/notification",
-                "translate": "HIveToMysql",
-                "shortcut": true
-            }, {
+                "text": "数据同步",
+                "translate": "数据同步",
+                "link": "/pro/form",
+                "icon": "icon-note",
+                "children": [{
+                        "text": "Step Form",
+                        "link": "/elements/buttons",
+                        "translate": "同步开关",
+                        "shortcut": true
+                     },{
+                        "text": "Step Form",
+                        "link": "/elements/buttons",
+                        "translate": "同步列表",
+                        "shortcut": true
+                    },{
+                    "text": "Step Form",
+                    "link": "/elements/notification",
+                    "translate": "HIveToMysql",
+                    "shortcut": true
+                }]
+            },{
                 "text": "依赖配置",
                 "link": "/elements/dependency",
                 "translate": "依赖配置"

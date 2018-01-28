@@ -29,7 +29,8 @@ import { TreeAntdLineComponent } from './tree-antd/line.component';
 import { DependencyConfListConponent } from './dependency/dependency-conf-list.component';
 import {SchedulerHistoryComponent} from "./dependency/history/scheduler-history-list.component";
 import {SchedulerHistoryDetailComponent} from "./dependency/history/detail/scheduler-history-detail.component";
-
+//import {AgGridModule} from "ag-grid-angular/main";
+import { DataTablesModule } from 'angular-datatables';
 const TreeAntdDemoComponentes = [
     TreeAntdBasicComponent,
     TreeAntdAsyncComponent,
@@ -43,7 +44,9 @@ const TreeAntdDemoComponentes = [
         SharedModule,
         ElementsRoutingModule,
         NzTreeModule,
-        DndModule.forRoot()
+        DndModule.forRoot(),
+        //AgGridModule.withComponents([DependencyConfListConponent])
+        DataTablesModule
     ],
     declarations: [
         ButtonsComponent,

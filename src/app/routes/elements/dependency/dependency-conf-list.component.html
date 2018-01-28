@@ -1,18 +1,18 @@
 <form nz-form [nzLayout]="'inline'" class="search-form" style="margin-bottom: 0px;">
-    <div nz-form-item>
-        <div nz-form-label><label>描述</label></div>
+    <div nz-form-item >
+        <div nz-form-label>描述：</div>
         <div nz-form-control>
             <nz-input [(ngModel)]="s.desc" name="desc"></nz-input>
         </div>
     </div>
     <div nz-form-item>
-        <div nz-form-label><label>前置JOB</label></div>
+        <div nz-form-label>前置JOB：</div>
         <div nz-form-control>
             <nz-input [(ngModel)]="s.preJob" name="preJob"></nz-input>
         </div>
     </div>
     <div nz-form-item>
-        <div nz-form-label><label>状态</label></div>
+        <div nz-form-label>状态：</div>
         <div nz-form-control>
             <nz-select [(ngModel)]="s.s" name="s" [nzAllowClear]="false">
                 <nz-option nzValue="" nzLabel="请选择"></nz-option>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div nz-form-item>
-        <div nz-form-label><label>执行方式</label></div>
+        <div nz-form-label>执行方式：</div>
         <div nz-form-control>
             <nz-select [(ngModel)]="s.s" name="s" [nzAllowClear]="false">
                 <nz-option nzValue="" nzLabel="请选择"></nz-option>
@@ -42,45 +42,231 @@
         </div>
     </div>
 </form>
-<nz-table #nzTable class="simple-table"
-          [nzAjaxData]="dependcyConfData"
-          [nzLoading]="http.loading"
-          [nzTotal]="total"
-          [(nzPageIndex)]="s.pi"
-          [(nzPageSize)]="s.ps"
-          (nzPageIndexChange)="load()"
-          [nzBordered]="true"
-          [nzSize]="'middle'">
-    <thead nz-thead>
-        <tr>
-            <th nz-th>schedulerId</th>
-            <th nz-th>描述</th>
-            <th nz-th>状态</th>
-            <th nz-th>执行类型</th>
-            <th nz-th>执行类型切换</th>
-            <th nz-th>重试次数</th>
-            <th nz-th>开始时间</th>
-            <th nz-th>结束时间</th>
-            <th nz-th>节点管理页</th>
-            <th nz-th>历史记录</th>
-            <th nz-th>修改</th>
-            <th nz-th>删除</th>
-        </tr>
+
+
+<table datatable [dtOptions]="dtOptions" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%"  style="white-space: nowrap;">
+    <thead>
+    <tr style="text-align: center">
+        <th>schedulerId</th>
+        <th>描述</th>
+        <th>状态</th>
+        <th>执行类型</th>
+        <th>执行类型切换</th>
+        <th>重试次数</th>
+        <th>节点管理页</th>
+        <th>历史记录</th>
+        <th>开始时间</th>
+        <th>结束时间</th>
+        <th>操作</th>
+    </tr>
     </thead>
-    <tbody nz-tbody>
-        <tr nz-tbody-tr *ngFor="let item of nzTable.data">
-            <td>{{item.schedulerId}}</td>
-            <td>{{item.desc}}</td>
-            <td>{{item.status}}</td>
-            <td>{{item.runType}}</td>
-            <td>切换</td>
-            <td>{{item.num}}</td>
-            <td>{{item.startDate}}</td>
-            <td>{{item.endDate}}</td>
-            <td>节点</td>
-            <td><a (click)="openHistoryRecord(item)">历史</a></td>
-            <td>修改</td>
-            <td>删除</td>
-        </tr>
+    <tbody>
+    <tr *ngFor="let item of dependcyConfData" style="text-align: center">
+        <td>{{item.schedulerId}}</td>
+        <td>{{item.desc}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.runType}}</td>
+        <td><a><img src="../../../../assets/image/icon/change.png"></a></td>
+        <td>{{item.num}}</td>
+        <td><a><img src="../../../../assets/image/icon/node.png"></a></td>
+        <td><a (click)="openHistoryRecord(item)"><img src="../../../../assets/image/icon/history.png"></a></td>
+        <td>{{item.startDate}}</td>
+        <td>{{item.endDate}}</td>
+        <td>
+            <a style="padding-right: 2px;" ><img src="../../../../assets/image/icon/edit.png"></a>
+            <a style="padding-left: 2px;"><img src="../../../../assets/image/icon/delete.png"></a>
+        </td>
+    </tr>
+   <!-- <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a (click)="openHistoryRecord(item)">历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr><tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>
+    <tr>
+        <td>1111</td>
+        <td>进入执行</td>
+        <td>正常执行</td>
+        <td>自动</td>
+        <td><a>切换</a></td>
+        <td>1</td>
+        <td>2011-04-25</td>
+        <td>2011-04-25</td>
+        <td><a>节点</a></td>
+        <td><a>历史</a></td>
+        <td><a>编辑</a><a>删除</a></td>
+    </tr>-->
     </tbody>
-</nz-table>
+</table>
+
+
+<!--<ag-grid-angular #agGrid style="width: 100%; height: 450px ;" class="ag-theme-fresh"
+                 [rowData]="rowData"
+                 [columnDefs]="columnDefs"
+                 [pagination]="true"
+                 (gridReady)="onGridReady($event)"
+                 [enableColResize]="true"
+                 >
+</ag-grid-angular>-->

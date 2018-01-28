@@ -56,7 +56,7 @@ export class DemoSimpleTableComponent implements OnInit{
         });
     }
     addOrEdit(i) {
-        this.modalHelper.static(ExtrasPoiEditComponent, { i },{size:450}).subscribe(() => {
+        this.modalHelper.static(ExtrasPoiEditComponent, { i },450).subscribe(() => {
             this.load();
             this.msgSrv.info('回调，重新发起列表刷新');
         });
@@ -86,7 +86,7 @@ export class DemoSimpleTableComponent implements OnInit{
         console.log("de:" + i)
         let parentData = this.parentData;
         console.log("parentData:" + parentData);
-        this.modalHelper.static(DictDetailEditComponent,{i,parentData},{size:450}).subscribe( () => {
+        this.modalHelper.static(DictDetailEditComponent,{i,parentData},450).subscribe( () => {
             this.load();
             this.msgSrv.info('回调，重新发起刷新列表');
         })
