@@ -58,7 +58,7 @@ export class  DependencyConfListConponent implements OnInit,ConfigInterface {
         this.load();
         this.dtOptions = {
             //"dom": '<"top">rt<"bottom"ip><"clear">',
-            "language": {"url" : "../../../../assets/dataTablesLanguage.json"},
+            /*"language": {"url" : "../../../../assets/dataTablesLanguage.json"},*/
             "scrollX": true,
             //"order": "desc",
             "bFilter": false,

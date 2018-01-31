@@ -47,12 +47,13 @@ export class DemoSimpleTableComponent implements OnInit{
             this.s.pi = 1;
         }
         this.http.get('./assets/pois.json', this.s).subscribe((res: any) => {
-            this.list = res.data;
+            this.dictDetail = res.data;
             this.total = res.total;
         });
-        this.http.get('./assets/temp/dictDetail.json', this.s).subscribe((res: any) => {
-            this.dictDetail = res.data;
-            console.log(this.dictDetail);
+        this.http.get('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryVersion/query').subscribe((res: any) => {
+            this.list = res.data;
+            this.total = res.total;
+            console.log(res.data);
         });
     }
     addOrEdit(i) {
