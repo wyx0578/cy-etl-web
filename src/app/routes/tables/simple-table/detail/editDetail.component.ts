@@ -13,14 +13,12 @@ export class DictDetailEditComponent implements OnInit {
     i : any;
     parentData : any;
     title = "编辑";
-    item = [{
-        "iAutoid": "",
-        "iVersionId": "",
-        "sValue": "",
-        "sLabel": "",
-        "iCreateTime": "",
-        "iUpdateTime": ""
-    }];
+    item = {
+        "iAutoid": null,
+        "iVersionId": null,
+        "sValue": null,
+        "sLabel": null
+    };
     constructor(
         private modalHeloper: ModalHelper,
         private subject: NzModalSubject,
@@ -29,6 +27,7 @@ export class DictDetailEditComponent implements OnInit {
     ){}
     ngOnInit(){
         if (this.i == -1){
+            this.title = "添加";
             this.i = this.item;
         }
     }
@@ -40,15 +39,16 @@ export class DictDetailEditComponent implements OnInit {
         //alert(value)
         console.log("value -->" + value.iAutoid);
         if(this.title == '编辑'){
-            this.http.put('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryVersion/',value).subscribe(() => {
+            this.http.put('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryDetail/',value).subscribe(() => {
                 this.msgSrv.success('保存成功！');
-                this.subject.next('false');
+                this.subject.next('true');
                 this.close();
             });
         }else {
-            this.http.post('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryVersion/',value).subscribe(() => {
+            value.iVersionId = this.parentData.iAutoid;
+            this.http.post('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryDetail/',value).subscribe(() => {
                 this.msgSrv.success('保存成功！');
-                this.subject.next('false');
+                this.subject.next('true');
                 this.close();
             });
         }

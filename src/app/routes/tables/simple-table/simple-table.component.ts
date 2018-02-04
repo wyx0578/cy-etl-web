@@ -142,12 +142,13 @@ export class DemoSimpleTableComponent implements OnInit{
         if (i == "error"){
             i = -1;
         }
-        console.log("de:" + i)
         let parentData = this.parentData;
         console.log("parentData:" + parentData);
         this.modalHelper.static(DictDetailEditComponent,{i,parentData},450).subscribe( () => {
-            this.load();
-            this.msgSrv.info('回调，重新发起刷新列表');
+            //this.load();
+            this.http.get('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryDetail/' + this.parentData.iAutoid).subscribe((res: any) => {
+                this.dictDetailData = res.data;
+            });
         })
     }
 

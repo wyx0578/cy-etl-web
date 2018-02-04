@@ -1,7 +1,8 @@
 <div class="modal-header">
     <div class="modal-title">{{title}}-字典明细</div>
 </div>
-<form #f="ngForm" (ngSubmit)="save()" nz-form [nzType]="'horizontal'">
+<form #f="ngForm" (ngSubmit)="save(f.value)" nz-form [nzType]="'horizontal'">
+
     <div nz-form-item nz-row class="mb-sm">
         <div nz-form-label nz-col [nzSpan]="4"><label>字典名称</label></div>
         <div nz-form-control nz-col [nzSpan]="20">
