@@ -12,10 +12,12 @@ import { FSTableComponent } from './fs-table/fs-table.component';
 import { TableStandardComponent } from './standard/standard.component';
 import {ExtrasPoiEditComponent} from "./simple-table/edit/edit.component";
 import { DictDetailEditComponent } from "./simple-table/detail/editDetail.component";
+import {DataTablesModule} from "angular-datatables/index";
+
 
 const COMPONENTS_NOROUNT = [ ExtrasPoiEditComponent,DictDetailEditComponent ];
 @NgModule({
-    imports: [ SharedModule, TablesRoutingModule ],
+    imports: [ SharedModule, TablesRoutingModule,DataTablesModule ],
     providers: [ RandomUserService ],
     declarations: [
         TableStandardComponent,

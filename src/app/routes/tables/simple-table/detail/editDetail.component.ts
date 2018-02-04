@@ -12,6 +12,7 @@ import { ModalHelper } from '@delon/theme';
 export class DictDetailEditComponent implements OnInit {
     i : any;
     parentData : any;
+    title = "编辑";
     item = [{
         "iAutoid": "",
         "iVersionId": "",
@@ -31,12 +32,26 @@ export class DictDetailEditComponent implements OnInit {
             this.i = this.item;
         }
     }
-    save() {
-        this.http.get('./assets/pois.json').subscribe(() => {
-            this.msgSrv.success('保存成功，只是模拟，实际未变更');
-            this.subject.next('true');
-            this.close();
-        });
+    /**
+     * 保存
+     * @param value
+     */
+    save(value) {
+        //alert(value)
+        console.log("value -->" + value.iAutoid);
+        if(this.title == '编辑'){
+            this.http.put('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryVersion/',value).subscribe(() => {
+                this.msgSrv.success('保存成功！');
+                this.subject.next('false');
+                this.close();
+            });
+        }else {
+            this.http.post('http://localhost:8080/cy-etl-java/api/dictionary/dictionaryVersion/',value).subscribe(() => {
+                this.msgSrv.success('保存成功！');
+                this.subject.next('false');
+                this.close();
+            });
+        }
     }
 
     close() {
